@@ -1,0 +1,446 @@
+plot(cars)
+train <- read.csv("D:/Master of Data Science/STAT7102/Project/Instagram Fake or Real Account/Instagram Fake Account Predictor/train.csv")
+View(train)
+train <- read.csv("D:/Master of Data Science/STAT7102/Project/
+Instagram Fake or Real Account/Instagram Fake Account
+Predictor/train.csv")
+getwd()
+# reading train and test data
+train <- read.csv("D:/Master of Data Science/STAT7102/Project/Instagram Fake or Real Account/Instagram Fake Account Predictor/train.csv")
+dim(train)
+dim(test)
+test <- read.csv("D:/Master of Data Science/STAT7102/Project/Instagram Fake or Real Account/Instagram Fake Account Predictor/test.csv")
+# make sure environment is right
+getwd()
+# reading train and test data
+train <- read.csv("D:/Master of Data Science/STAT7102/Project/Instagram Fake or Real Account/Instagram Fake Account Predictor/train.csv")
+setwd("D:/Master of Data Science/STAT7102/Project/Instagram Fake or Real Account/Instagram Fake Account Predictor")
+dim(test)
+head(train)
+fix(train)
+names(train)
+train$fake
+train$fake.hist()
+hist(train$fake)
+hist(test$fake)
+# see all columns
+names(train)
+summary(train)
+# Load nlme package
+library(nlme)
+# Load packages
+library(nlme)
+library(glm2)
+# quickly go to end step to try glmm first
+fakefit <- glm2(fake~X.followers + description.length,
+family = "binomial", data = train)
+summary(fakefit)
+print.noquote(c(fakefit$coef))
+print.noquote(c(fakefit$coef, fakefit2$coef))
+fakefit2 <- glm2(fake~X.followers + description.length,
+family = "logistic", data = train)
+fakefit2 <- glm2(fake~X.followers + description.length,
+family = "logit", data = train)
+fakefit2 <- glm2(fake~X.followers + description.length,
+family=binomial(link="logit"),, data = train)
+predicted
+# use predict() function to compute predicted probabilities
+predicted <- predict(fakefit, newdata = test, type = "response")
+predicted
+plot(predicted)
+# plot(predicted)
+# accuracy(x, y)
+head(predicted)
+# plot(predicted)
+# accuracy(x, y)
+tail(predicted)
+# plot(predicted)
+accuracy(test$fake, predicted)
+pred <- ifelse(predicted < 0, 0, 1)
+Accuracy(test$fake, pred)
+help.search('accuracy')
+help.search('Accuracy')
+install.packages('fpp2')
+library(forecast)
+accuracy(test$fake, pred)
+head(train)
+fakefit2 <- glm2(fake~X.followers + description.length + x.posts,
+family=binomial(link="logit"),, data = train)
+fakefit2 <- glm2(fake~X.followers + description.length + X.posts,
+family=binomial(link="logit"),, data = train)
+library(lmtest)
+# use likelihood to compare models
+lrtest(fakefit, fakefit2)
+summary(fakefit2)
+View(train)
+is.factor(train$fake)
+as.factor(train$fake)
+is.factor(train$fake)
+train$fake <- as.factor(train$fake)
+is.factor(train$fake)
+train$fake
+# quickly go to end step to try glmm first
+fakefit <- glm2(fake~X.followers + description.length,
+family = "binomial", data = train)
+View(train)
+as.factor
+train$profile.pic <- as.factor(train$profile.pic)
+train$name..username <- as.factor(train$name..username)
+train$external.URL <- as.factor(train$external.URL)
+train$private <- as.factor(train$private)
+# quickly go to end step to try glmm first
+fakefit <- glm2(fake~X.followers + description.length,
+family = "binomial", data = train)
+fakefit2 <- glm2(fake~X.followers + description.length + X.posts,
+family=binomial(link="logit"),, data = train)
+summary(fakefit2)
+fakefit3 <- glm2(fake~X.followers + description.length + X.posts + private,
+family=binomial(link="logit"),, data = train)
+summary(fakefit3)
+# use predict() function to compute predicted probabilities
+predicted <- predict(fakefit3, newdata = test, type = "response")
+test$fake <- as.factor(test$fake)
+test$profile.pic <- as.factor(test$profile.pic)
+test$name..username <- as.factor(test$name..username)
+test$external.URL <- as.factor(test$external.URL)
+test$private <- as.factor(test$private)
+# use predict() function to compute predicted probabilities
+predicted <- predict(fakefit3, newdata = test, type = "response")
+predicted
+pred <- ifelse(predicted < 0, 0, 1)
+accuracy(test$fake, pred)
+accuracy(pred, test$fake)
+test$fake
+pred
+predicted
+fakefit2 <- glm2(fake~X.followers + description.length + X.posts,
+family=binomial(link="logit"), data = train)
+fakefit3 <- glm2(fake~X.followers + description.length + X.posts + private,
+family=binomial(link="logit"), data = train)
+# use likelihood to compare models
+lrtest(fakefit, fakefit2, fakefit3)
+# use predict() function to compute predicted probabilities
+predicted <- predict(fakefit3, newdata = test, type = "response")
+pred <- ifelse(predicted < 0, 0, 1)
+accuracy(pred, test$fake)
+# plot the histogram of each variable
+plot(train$fake~train$description.length)
+hist(train$fake)
+hist(train$description.length)
+log(train$description.length)
+library(foreach)
+# see all columns
+names(train)
+summary(train)
+# Load packages
+install.packages("PerformanceAnalytics")
+library("PerformanceAnalytics")
+chart.Correlation(train, histogram=TRUE, pch=19)
+# chart.Correlation(train, histogram=TRUE, pch=19)
+cor(train)
+# Generalized Linear Model with Binomial distribution
+fakefit1 <- glm2(fake~ ., family = "binomial", data = train)
+summary(fakefit1)
+fakefit2 <- glm2(fake~profile.pic+nums.length.username+X.posts+X.followers+X.follows,
+family = "binomial", data = train)
+summary(fakefit2)
+fakefit2 <- glm2(fake~profile.pic+nums.length.username+X.posts+X.followers+X.follows +
+private * (profile.pic+nums.length.username+X.posts+X.followers+X.follows) ,
+family = "binomial", data = train)
+summary(fakefit2)
+fakefit2 <- glm2(fake~profile.pic+nums.length.username+X.posts+X.followers+X.follows +
+description.length * (profile.pic+nums.length.username+X.posts+X.followers+X.follows) ,
+family = "binomial", data = train)
+summary(fakefit2)
+hist(log(train$description.length))
+hist(train$nums.length.username)
+hist(train$nums.length.fullname)
+hist(train$fullname.words)
+hist(train$X.posts)
+hist(train$X.followers)
+hist(train$X.followers)
+hist(trace(X.follows))
+fakefit2 <- glm2(fake~profile.pic+nums.length.username+X.posts+X.followers+X.follows+log(description.length),
+family = "binomial", data = train)
+# plot the histogram of each variable
+#plot(train$fake~train$description.length)
+hist(train$profile.pic)
+hist(train$nums.length.username)
+hist(train$fullname.words)
+hist(train$nums.length.fullname)
+hist(train$name..username)
+hist(train$description.length)
+hist(train$external.URL)
+hist(train$private1)
+hist(train$X.posts)
+hist(train$X.followers)
+hist(trace(X.follows))
+# plot the histogram of each variable
+#plot(train$fake~train$description.length)
+hist(as.numeric(train$profile.pic))
+hist(train$X.follows)
+hist(as.numeric(train$name..username))
+library(ggplot)
+library(ggplot2)
+ggplot(data = train, mapping = aes(x = fake, y = description.length)) +
+geom_boxplot()
+ggplot(data = diamonds) +
+geom_count(mapping = aes(x = profile.pic, y = fake))
+ggplot(data = train) +
+geom_count(mapping = aes(x = profile.pic, y = fake))
+# chart.Correlation(train, histogram=TRUE, pch=19)
+cor(train)
+# chart.Correlation(train, histogram=TRUE, pch=19)
+cor(profile.pic, fake)
+# chart.Correlation(train, histogram=TRUE, pch=19)
+cor(train$profile.pic, train$fake)
+# chart.Correlation(train, histogram=TRUE, pch=19)
+cor(train$description.length, train$fake)
+# chart.Correlation(train, histogram=TRUE, pch=19)
+cor(train$description.length, as.numeric(train$fake))
+cor(as.numeric(train$profile.pic), as.numeric(train$fake))
+install.packages("corrplot")
+libary(corrplot)
+library(corrplot)
+# chart.Correlation(train, histogram=TRUE, pch=19)
+rquery.cormat(train, type="flatten", graph=FALSE)
+source("http://www.sthda.com/upload/rquery_cormat.r")
+# chart.Correlation(train, histogram=TRUE, pch=19)
+rquery.cormat(train, type="flatten", graph=FALSE)
+# chart.Correlation(train, histogram=TRUE, pch=19)
+rquery.cormat(train, type="flatten", graph=FALSE, use="pairwise.complete.obs")
+train$private
+train$private, train$fake
+train %>% select(private, fake)
+View(train)
+train[c("private","fake")]
+as.numeric(train[c("private","fake")])
+#as.numeric(train[c("private","fake")])
+as.numeric(train)
+library(dplyr)
+# create another dataframe for having the data of numeric train
+numeric_train <- mutate_all(train, function(x) as.numeric(as.character(x)))
+rquery.cormat(numeric_train, type="flatten", graph=FALSE)
+corr_col<- colorRampPalette(c("blue", "white", "red"))(20)
+rquery.cormat(mydata, type="full", col=corr_col)
+rquery.cormat(numeric_train, type="full", col=corr_col)
+ggplot(data = train, mapping = aes(x = fake, y = description.length)) +
+geom_boxplottrain
+ggplot(data = train) +
+geom_count(mapping = aes(x = profile.pic, y = fake))
+ggplot(data = train, mapping = aes(x = fake, y = description.length))
+ggplot(data = train, mapping = aes(x = fake, y = description.length)) +
+geom_boxplot()
+ggplot(data = train, mapping = aes(x = fake, y = description.length)) +
+geom_boxplot()
+ggplot(data = train) +
+geom_count(mapping = aes(x = profile.pic, y = fake))
+# relationship plots between fake and other variables
+ggplot(data = train, mapping = aes(x = fake, colour = cut)) +
+geom_freqpoly(binwidth = 0.1)
+# relationship plots between fake and other variables
+ggplot(data = numeric_train, mapping = aes(x = fake, colour = cut)) +
+geom_freqpoly(binwidth = 0.1)
+# relationship plots between fake and other variables
+ggplot(data = numeric_train, mapping = aes(x = fake, colour = cut)) +
+geom_freqpoly()
+# relationship plots between fake and other variables
+ggplot(data = numeric_train, mapping = aes(x = fake, colour = profile.pic)) +
+geom_freqpoly()
+# relationship plots between fake and other variables
+ggplot(data = numeric_train, mapping = aes(x = fake, colour = profile.pic)) +
+geom_freqpoly(binwidth = 0.01)
+# relationship plots between fake and other variables
+ggplot(data = numeric_train, mapping = aes(x = description.length, colour = fake)) +
+geom_freqpoly(binwidth = 0.01)
+# relationship plots between fake and other variables
+ggplot(data = numeric_train, mapping = aes(x = description.length, colour = fake)) +
+geom_freqpoly(binwidth = 0.1)
+# relationship plots between fake and other variables
+ggplot(data = numeric_train, mapping = aes(x = description.length, colour = fake)) +
+geom_freqpoly(binwidth = 0.25)
+#### relationship plots between fake and other variables
+# Factor variables
+ggplot(data = train) + geom_count(mapping = aes(x = profile.pic, y = fake))
+ggplot(data = train) + geom_count(mapping = aes(x = name..username, y = fake))
+ggplot(data = train) + geom_count(mapping = aes(x = external.URL, y = fake))
+ggplot(data = train) + geom_count(mapping = aes(x = private, y = fake))
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white")
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")+
+geom_density(alpha=.2, fill="#FF6666")
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")+
+geom_density(alpha=.2)
+..density..
+ggplot(data = numeric_train, mapping = aes(x = description.length, colour = fake)) +
+geom_freqpoly(binwidth = 0.25)
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")+
+geom_density(alpha=.2)
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")+
+geom_density()
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=fullname.words, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=X.posts, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=X.followers, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=X.follows, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+hist(train$X.follows, breaks = seq(-0.6, 0.8, 0.04), col = "grey", freq = FALSE,
+main = "Histogram of HSI Returns", xlab = "HSI Return")
+hist(train$X.follows, col = "grey", freq = FALSE,
+main = "Histogram of HSI Returns", xlab = "HSI Return")
+kde1 <- density(train$X.follows)
+lines(kde1, col = "blue", lwd = 2)
+hist(train$X.follows, col = "grey", freq = FALSE,
+main = "Histogram of No. of Following Accounts", xlab = "No. of Following Accounts")
+lines(kde1, col = "blue", lwd = 2)
+hist(log(train$X.follows), col = "grey", freq = FALSE,
+main = "Histogram of No. of Following Accounts", xlab = "No. of Following Accounts")
+hist(log(train$X.follows), col = "grey", freq = FALSE,
+main = "Histogram of No. of Following Accounts", xlab = "Log No. of Following Accounts")
+ggplot(train, aes(X.posts, fill = fake)) + geom_density(alpha = 0.2)
+ggplot(train, aes(X.posts, fill = fake)) + geom_density(alpha = 0.5)
++ geom_density(alpha = 0.2)
+ggplot(train, aes(x=X.follows, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")+
+geom_density(alpha = 0.2)
+hist(train$X.follows, col = "grey", freq = FALSE,
+main = "Histogram of No. of Following Accounts", xlab = "No. of Following Accounts") +
+hist(train$X.posts, col = "grey", freq = FALSE,
+main = "Histogram of No. of Following Accounts", xlab = "No. of Following Accounts")
+# Change histogram plot line colors by groups
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=fullname.words, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=X.posts, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=X.followers, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=X.follows, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity")
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10()
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") + scale_x_log10()
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.2, fill="#FF6666")
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.2)
+, fill="#FF6666"
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.2, fill="#FF6666")
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.2)
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.2)
+ggplot(train, aes(x=fullname.words, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.2)
+ggplot(train, aes(x=X.posts, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.2)
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+geom_density(alpha=.2) + scale_x_log10()
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+geom_density(alpha=.5) + scale_x_log10()
+# Histogram plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+geom_density(alpha=.5) + scale_x_log10()
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+scale_x_log10() + geom_density(alpha=.5)
+# try density plot
+ggplot(train, aes(x=nums.length.username)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density(alpha=.2, fill="#FF6666")
+# try density plot
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density(alpha=.2, fill="#FF6666")
+# try density plot
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density(alpha=.5, fill="#FF6666")
+# try density plot
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density()
+# try density plot
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density() + scale_x_log10()
+# Density plots with log 10 transformation
+ggplot(train, aes(x=nums.length.fullname, color=fake)) +
+geom_histogram(fill="white", alpha=0.5, position="identity") +
+geom_density(alpha=.5) + scale_x_log10()
+ggplot(train, aes(x=nums.length.username, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density() + scale_x_log10()
+ggplot(train, aes(x=fullname.words, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density() + scale_x_log10()
+ggplot(train, aes(x=X.posts, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density() + scale_x_log10()
+ggplot(train, aes(x=X.followers, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density() + scale_x_log10()
+),
+ggplot(train, aes(x=X.follows, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density() + scale_x_log10()
+ggplot(train, aes(x=description.length, color=fake)) +
+geom_histogram(aes(y=..density..), colour="black", fill="white")+
+geom_density() + scale_x_log10()
+fakefit2 <- glm2(fake~profile.pic+nums.length.username+X.posts+X.followers+X.follows+log(description.length),
+family = "binomial", data = train)
+fakefit2 <- glm2(fake~profile.pic+nums.length.username+X.posts+X.followers+X.follows+log10(description.length),
+family = "binomial", data = train)
+# create another dataframe for having train data in log 10 scale
+log10_train <- mutate_all(train, funs(log = log(.)))
+head(log10_train)
+source('D:/Master of Data Science/STAT7102/Project/Instagram Fake or Real Account/Instagram Fake Account Predictor/main.R', echo=TRUE)

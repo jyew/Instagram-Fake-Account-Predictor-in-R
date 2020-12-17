@@ -1,0 +1,85 @@
+## STAT7102/7614 Tutorial 2 ##
+
+rm(list = ls())
+
+setwd("/Users/ggaojiahui/Dropbox/tutorial_6014_gao_jin/tutorials_2021_sem1/tutorial slides/tutorial2/supp")
+
+library(glm2)
+library(lmtest)
+
+## Q1.a : Pearson Chi-square test
+# create two-way contingency table
+tbl <- as.table(rbind(c(30,13,15,5), c(5,10,12,28)))
+dimnames(tbl) <- list(believe = c("Yes","No"), 
+                      age = c("Age3","Age4","Age5","Age6"))
+# perform Chi-square test for independence
+chisq.test(tbl)
+
+
+## Q1.c : Fit logistic regression model
+# create dataset in single-observation (raw data) format
+santa1 <- data.frame("believe" = c(rep("Yes",63),rep("No",55)),
+                     "age" = c(rep("Age3",30),rep("Age4",13),rep("Age5",15),
+                               rep("Age6",5),rep("Age3",5),rep("Age4",10),
+                               rep("Age5",12),rep("Age6",28)))
+# set reference class of age to "Age6"
+santa1$age <- relevel(santa1$age, ref = "Age6")
+# fit logistic regression model
+fit1 <- glm2(believe~age, family = binomial, data = santa1)
+summary(fit1)
+## (Note that deviance and deviance df are wrongly reported)
+
+# use dataset in count weighted (summarized) format
+santa2 <- data.frame("believe" = c(rep("Yes",4),rep("No",4)),
+                     "age" = rep(c("Age3","Age4","Age5","Age6"),2),
+                     "count" = c(30,13,15,5,5,10,12,28))
+santa2$age <- relevel(santa2$age, ref = "Age6")
+fit2 <- glm2(believe~age, family = binomial, weights = count, data = santa2)
+summary(fit2)
+## (Note that deviance and deviance df are wrongly reported)
+
+# use dataset in table format (summarized) format
+santa3 <- data.frame("age" = c("Age3","Age4","Age5","Age6"),
+                     "bYes" = c(30,13,15,5),
+                     "bNo" = c(5,10,12,28))
+santa3$age <- relevel(santa3$age, ref = "Age6")
+fit3 <- glm2(cbind(bYes,bNo)~age, family = binomial, data = santa3)
+summary(fit3)
+## (Note that deviance and deviance df are correctly reported)
+
+## Q1.d 
+newdata <- data.frame(age=paste0("Age", 3:6))
+predict(fit3, newdata = newdata, type="response")
+
+
+## Q1.e -- LR test
+# -- Full model: logit(pi) = intercept + beta1*Age3 + beta2*Age4 + beta3*Age5
+# -- Null model: logit(pi) = intercept
+fit0 <- glm2(cbind(bYes,bNo)~1, family = binomial, data = santa3)
+lrtest(fit3, fit0)
+# another way 
+1 - pchisq(37.7672, 3)
+
+## Q1.g -- Confidence intervals for Odds ratios
+confint(fit3)
+exp(confint(fit3))
+
+
+## Q1.h -- Confidence intervals for Odds ratios
+# change reference class for comparison
+santa3$age <- relevel(santa3$age, ref = "Age5")
+fit4 <- glm2(cbind(bYes,bNo)~age, family = binomial, data = santa3)
+summary(fit4)
+exp(confint(fit4))
+
+
+## Q1.j - Fit logistic regression model 
+# treating age as quantitiative variable
+santa4 <- data.frame("age" = 3:6,
+                     "bYes" = c(30,13,15,5),
+                     "bNo" = c(5,10,12,28))
+fit5 <- glm2(cbind(bYes,bNo)~age, family = binomial, data = santa4)
+summary(fit5)
+exp(coef(fit5))
+exp(confint(fit5))
+
